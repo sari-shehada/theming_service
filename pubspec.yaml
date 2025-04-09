@@ -2,6 +2,7 @@ name: theming_service
 description: "A new Flutter package project."
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: ^3.7.2
@@ -11,7 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.7.2
-  shared_preferences: ^2.5.3
+  shared_prefrences_service:
+    git:
+      url: ../shared_prefrences_service/
+      ref: 0.3.0
 
 dev_dependencies:
   flutter_test:
