@@ -4,33 +4,25 @@ import 'package:get/get.dart';
 import 'theming_service_shared_prefs_handler.dart';
 
 class ThemingService {
-  ThemingService({
-    // required this.isDarkMode,
-    required this.currentThemeMode,
-  });
+  ThemingService({required this.currentThemeMode});
 
   bool get isDarkMode => Get.isDarkMode;
-  // bool  isDarkMode;
   ThemeMode currentThemeMode;
   static late ThemingService instance;
 
   static ThemingService init() {
     ThemeMode currentThemeMode = _getCurrentThemeModeFromSharedPrefs();
-    instance = ThemingService(
-      // isDarkMode: Get.isDarkMode,
-      currentThemeMode: currentThemeMode,
-    );
+    instance = ThemingService(currentThemeMode: currentThemeMode);
     return instance;
   }
 
   void toggleLightAndDarkTheme() {
-    // isDarkMode = !isDarkMode;
-    _updateThemeMode();
+    _setThemeMode();
     _applyCurrentThemeMode();
   }
 
   void setCurrentThemeMode(ThemeMode themeMode) {
-    _updateThemeMode(themeMode: themeMode);
+    _setThemeMode(themeMode: themeMode);
     _applyCurrentThemeMode();
   }
 
@@ -38,12 +30,9 @@ class ThemingService {
     return ThemingServiceSharedPrefsHandler.getCurrentThemeMode();
   }
 
-  Future<void> _updateThemeMode({ThemeMode? themeMode}) async {
-    if (themeMode == null) {
-      currentThemeMode = isDarkMode ? ThemeMode.light : ThemeMode.dark;
-    } else {
-      currentThemeMode = themeMode;
-    }
+  Future<void> _setThemeMode({ThemeMode? themeMode}) async {
+    themeMode ??= isDarkMode ? ThemeMode.light : ThemeMode.dark;
+    currentThemeMode = themeMode;
     await ThemingServiceSharedPrefsHandler.setCurrentThemeMode(
       currentThemeMode,
     );
