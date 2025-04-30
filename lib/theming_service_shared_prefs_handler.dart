@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_prefrences_service/shared_prefrences_service.dart';
+import 'package:shared_preferences_service/shared_preferences_service.dart';
 
 class ThemingServiceSharedPrefsHandler {
   static ThemeMode getCurrentThemeMode() {
